@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	*{margin: 0;padding: 0;}
+	.top{margin: 0 auto;background: #ccc;width: 1000px;height:auto; }
+	.title{text-align: center;}
+	.top dl{float: left;padding: 5px 20px 0 20px;}
+	.top dl dd{line-height: 50px;}
+	</style>
+</head>
+<body>
+	<div class="header">
+		<div>
+			<h2>热点股票第一排行版</h2>
+		</div>
+		<div class="top">
+			<dl class="warp">
+				<!-- <dt>热度</dt>
+				<dd>111</dd>
+				<dd>222</dd>
+				<dd>333</dd>
+				<dd>444</dd> -->
+			</dl>
+			<dl class="warp"> 
+				<!-- <dt>股票</dt>
+				<dd>555</dd>
+				<dd>666</dd>
+				<dd>777</dd>
+				<dd>888</dd> -->
+			</dl>
+			<dl class="warp">
+				<!-- <dt>股票</dt>
+				<dd>555</dd>
+				<dd>666</dd>
+				<dd>777</dd>
+				<dd>888</dd> -->
+			</dl>
+			<dl class="warp">
+				<!-- <dt>股票</dt>
+				<dd>555</dd>
+				<dd>666</dd>
+				<dd>777</dd>
+				<dd>888</dd> -->
+			</dl>
+			<dl class="warp">
+				<!-- <dt>股票</dt>
+				<dd>555</dd>
+				<dd>666</dd>
+				<dd>777</dd>
+				<dd>888</dd> -->
+			</dl>
+		</div>
+	</div>
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script>
+$.ajax({
+	type: "get",
+	url: "gupiao.txt",
+	timeOut:1000,
+	success: function(data){
+		var data = eval("(" + data + ")");
+		if(data.stocklist){
+			var str = "";
+			for(var i=0;i<data.stocklist.length;i++){
+				alert('3333');
+				str+=""+data.stocklist[i].num+"/'>"+data.stocklist[i].stockcode+"</a>"+data.list[i].ctime+"";
+				alert("444");
+			}
+			$(".warp").html(str);
+		}else{
+			$(".nodata").html("暂时无数据");
+		}
+	},
+	error:function(data){
+		alert(1111);
+	}
+	});
+   </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	li{list-style-type: none;}
+	*{padding: 0;margin: 0;}
+	body{background: #f2f2f2;}
+	a{text-decoration: none;}
+	.header ul{background: #fff;}
+	.header li{border-bottom: 1px solid #ccc;padding:10px;}
+	.top h3{height: 40px;line-height: 40px;border:1px solid #ccc;padding-left: 10px;}
+	.header li span{display: block;text-align: right;}
+	.header li a{color: #333;}
+	</style>
+</head>
+<body>
+	<div class="top">
+	<h3>经典案例</h3>
+	</div>
+	<div class="header">
+	<ul class="list">
+		<!-- <li><a>【分析】当前行情是“持有”还是“换仓”</a><span>2015-06-22</span></li>
+		<li><a>2015-06-22【分析】论“牛市持久战”</a><span>2015-04-11</span></li>
+		<li><a>【操盘】中长线投资必须注意的三大误区</a><span>2015-03-20</span></li> -->
+	</ul>
+</div>
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script>
+$.ajax({
+	type: "get",
+	url: "JSON.txt",
+	timeOut:1000,
+	success: function(data){
+		var data = eval("(" + data + ")");
+		if(data.code){
+			var str = "";
+			for(var i=0;i<data.list.length;i++){
+				str+="<li><a href='http://m.10jqka.com.cn/m"+data.list[i].sep+"/'>"+data.list[i].title+"</a><span>"+data.list[i].ctime+"</span></li>";
+			}
+			$(".list").html(str);
+		}else{
+			$(".nodata").html("暂时无数据");
+		}
+	},
+	error:function(data){
+		alert(1111);
+	}
+	});
+</script>
+</body>
+</html>
